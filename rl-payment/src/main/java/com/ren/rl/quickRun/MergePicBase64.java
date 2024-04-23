@@ -64,6 +64,7 @@ public class MergePicBase64 {
         document1.close();
     }
 
+
     private static PDDocument convertToPDF(ByteArrayInputStream inputStream, String originalFormat) {
         PDDocument document = new PDDocument();
 
