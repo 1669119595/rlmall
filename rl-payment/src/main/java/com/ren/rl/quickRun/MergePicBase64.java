@@ -33,7 +33,9 @@ public class MergePicBase64 {
 
         // 创建一个新的PDF文档
         PDFMergerUtility merger = new PDFMergerUtility();
+        PDDocument document1 = newPdfDocument();
 
+        // https://www.appblog.cn/index.php/2024/01/21/java-itextpdf-merge-images-pdf/
         for (String base64String : base64Strings) {
             // 解码Base64字符串为字节数组
             byte[] pdfBytes = Base64.getDecoder().decode(base64String);
@@ -44,7 +46,7 @@ public class MergePicBase64 {
                 ByteArrayInputStream inputStream = new ByteArrayInputStream(pdfs);
                 PDDocument document = PDDocument.load(inputStream);
                 // 加载PDF字节数据到一个临时的PDDocument对象
-                merger.appendDocument(document);
+                merger.appendDocument(document1, document);
                 merger.setDestinationFileName("merged.pdf");
                 merger.mergeDocuments(MemoryUsageSetting.setupMainMemoryOnly());
             } catch (Exception e){
@@ -58,8 +60,8 @@ public class MergePicBase64 {
 //        String base64AfterMerged = Base64.getEncoder().encodeToString(byteArray);
 
         // save the merged document
-        merger.save("C:\\test_folder\\merged.pdf");
-        merger.close();
+        document1.save("C:\\test_folder\\merged.pdf");
+        document1.close();
     }
 
     private static PDDocument convertToPDF(ByteArrayInputStream inputStream, String originalFormat) {
