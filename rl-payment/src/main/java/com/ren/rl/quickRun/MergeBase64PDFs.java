@@ -32,14 +32,14 @@ public class MergeBase64PDFs {
             }
         }
         // convert merged PDF to base64 encoded String
-//        ByteArrayOutputStream out = new ByteArrayOutputStream();
-//        mergedDocument.save(out);
-//        byte[] byteArray = out.toByteArray();
-//        String base64AfterMerged = Base64.getEncoder().encodeToString(byteArray);
-
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        mergedDocument.save(out);
+        byte[] byteArray = out.toByteArray();
+        String base64AfterMerged = Base64.getEncoder().encodeToString(byteArray);
+        System.out.println("-----");
         // save the merged document
-        mergedDocument.save("C:\\test_folder\\merged.pdf");
-        mergedDocument.close();
+//        mergedDocument.save("C:\\test_folder\\merged.pdf");
+//        mergedDocument.close();
     }
 
     private static PDDocument convertToPDF(ByteArrayInputStream inputStream, String originalFormat) {
